@@ -22,6 +22,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'cars.apps.CarsConfig',
+    'ckeditor',
     
     'django.contrib.admin',
     'django.contrib.auth',
