@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime
 from ckeditor.fields import RichTextField
 from multiselectfield import MultiSelectField
+
+
 class Car(models.Model):
   
     state_choice = (
