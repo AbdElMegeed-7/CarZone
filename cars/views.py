@@ -26,6 +26,11 @@ def car_detail(request, id):
 def search(request):
     cars = Car.objects.order_by('-created_date')
 
+    if 'keyword' in request.GET:
+        keyword = request.GET['keywork']
+        if keyword:
+            cars = cars.filter(description__icontains= keyword)
+    
     data = {
         'cars': cars,
     }
