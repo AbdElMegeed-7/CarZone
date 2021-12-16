@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% block title %}  | {% single_car.car_title %} {% endblock %}
 
 {% load humanize %}
 
@@ -8,10 +9,10 @@
 <div class="sub-banner overview-bgi">
   <div class="container breadcrumb-area">
       <div class="breadcrumb-areas">
-          <h1>{{ single_car.title }}</h1>
+          <h1>{{ single_car.car_title }}</h1>
           <ul class="breadcrumbs">
               <li><a href="index.html">Home</a></li>
-              <li class="active">{{ single_car.title }}</li>
+              <li class="active">{{ single_car.car_title }}</li>
           </ul>
       </div>
   </div>
