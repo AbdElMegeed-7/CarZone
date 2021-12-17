@@ -23,8 +23,18 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'cars.apps.CarsConfig',
     'accounts.apps.AccountsConfig',
+    
     'ckeditor',
     'django.contrib.humanize',
+    
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
+    # specify a provider
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -134,3 +144,6 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+
+SITE_ID = 1
