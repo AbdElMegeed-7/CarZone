@@ -36,7 +36,7 @@ def inquiry(request):
         admin_email = admin_info.email
         
         send_mail(
-            'Subject here',
+            'Subject here', 
             'Here is the message.',
             'from@example.com',
             ['to@example.com'],

@@ -21,6 +21,7 @@ def login(request):
         
     return render(request, 'accounts/login.html')
 
+
 def register(request):
     if request.method == 'POST':
         firstname = request.POST['firstname']
@@ -55,6 +56,7 @@ def register(request):
           
     else:
         return render(request, 'accounts/register.html')
+
 
 @login_required(login_url= 'login')
 def dashboard(request):
