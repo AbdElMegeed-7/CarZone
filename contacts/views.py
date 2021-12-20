@@ -1,5 +1,26 @@
-from django.shortcuts import render
-
+from django.shortcuts import redirect, render
+from .models import Contacts
+from django.contrib import messages
 # Create your views here.
 def inquiry(request):
-    return 
+    if request.method == 'POST':
+        car_id = request.POST['car_id']
+        car_title = request.POST['car_title']
+        user_id = request.POST['user_id']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        customer_need = request.POST['customer_need']
+        city = request.POST['city']
+        state = request.POST['state']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        message = request.POST['message']
+        
+    contact = Contacts(car_id=car_id, car_title=car_title, user_id=user_id,
+                       first_name=first_name, last_name=last_name, city=city, 
+                       customer_need=customer_need, state=state, email=email,
+                       phone=phone, message=message)
+    
+    contact.save()
+    messages.success(request, 'You request has been submitted, We will cotact you soon')
+    return redirect('/cars/'+car_id)
