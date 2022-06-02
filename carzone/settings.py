@@ -183,7 +183,7 @@ EMAIL_USE_TLS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 
 LOGGING = {
@@ -223,3 +223,5 @@ LOGGING = {
         'propagate': False,
     },
 }}
+
+django_heroku.settings(config=locals(), staticfiles=False,logging=False)
