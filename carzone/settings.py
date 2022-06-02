@@ -1,10 +1,13 @@
 from django.contrib.messages import constants as messages
 import os
 from pathlib import Path
+import dj_database_url
+import django_heroku
+django_heroku.settings(locals())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -13,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wx*j6c&re7kpvosain9h!p&)f68%2rpk#()@r-545^q$@o1!zi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -54,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'carzone.urls'
@@ -90,14 +94,17 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
+#         # 'USER': 'postgres',
+#         # 'PASSWORD': '0126509550',
+#         # 'HOST': 'localhost',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-        # 'USER': 'postgres',
-        # 'PASSWORD': '0126509550',
-        # 'HOST': 'localhost',
-    }
+    'default': dj_database_url.config(default='sqlite://db/mydatabase')
 }
 
 
@@ -137,12 +144,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'carzone/static/'),
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'carzone/static/'),
-]
 
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # configure media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -165,3 +178,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'admin@gmail.com'
 EMAIL_HOST_PASSWORD = ''  # Email Password
 EMAIL_USE_TLS = True
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
