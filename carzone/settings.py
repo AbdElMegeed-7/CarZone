@@ -1,3 +1,4 @@
+from django.contrib.messages import constants as messages
 import os
 from pathlib import Path
 
@@ -24,19 +25,19 @@ INSTALLED_APPS = [
     'cars.apps.CarsConfig',
     'accounts.apps.AccountsConfig',
     'contacts.apps.ContactsConfig',
-    
+
     'ckeditor',
     'django.contrib.humanize',
-    
+
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    
+
     # specify a provider
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,13 +80,23 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'carzone',
+#         'USER': 'postgres',
+#         'PASSWORD': '0126509550',
+#         'HOST': 'localhost',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'carzone',
-        'USER': 'postgres',
-        'PASSWORD': '0126509550',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+        # 'USER': 'postgres',
+        # 'PASSWORD': '0126509550',
+        # 'HOST': 'localhost',
     }
 }
 
@@ -141,7 +152,6 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
