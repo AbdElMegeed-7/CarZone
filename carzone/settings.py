@@ -170,7 +170,7 @@ MESSAGE_TAGS = {
 }
 
 
-SITE_ID = 1
+SITE_ID = 2
 
 # Sending Emails
 EMAIL_HOST = 'smtp.gmail.com'
